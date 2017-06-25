@@ -1,0 +1,38 @@
+﻿@model List<FirstMVC.Models.Car>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>@ViewBag.MainHeadline</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center text-primary">Bryce Changed This</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table style="width:100%;" class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+
+                @foreach (var car in Model)
+                {                    
+                    <tr>
+                        <td>@car.Id</td>
+                        <td>@car.Make</td>
+                        <td>@car.Model</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

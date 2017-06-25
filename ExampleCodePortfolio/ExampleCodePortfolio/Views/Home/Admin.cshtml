@@ -1,0 +1,87 @@
+@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1>@ViewData["Title"]</h1>
+        <span class="lead">Coding examples portfolio</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="label-success text-center block" data-bind="text: alertMessage" id="alertMessageBar"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Coding Examples:</h3><br />
+            <div data-bind="foreach: codeExamples()">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <input data-bind="value: Title" class="form-control" />
+                    </div>
+                    <div class="panel-body">
+
+                        <textarea data-bind="value: Description" class="form-control" ></textarea><br />
+                        <input data-bind="value: Url" class="form-control" /><br />
+                        <input data-bind="value: ImageUrl" class="form-control" />
+
+                    </div>
+                    <div class="panel-footer text-center">
+                        <a href="#" data-bind="click: $parent.removeCodeExample" class="btn btn-default">Delete</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="#" data-bind="click: $parent.updateCodeExample" class="btn btn-default">Save Changes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-heading"><h3>Add Code Example:</h3></div>
+                        <div class="panel-body">
+                            <form data-bind="submit: addCodeExample">
+                                <div class="form-group">
+                                    <div class="label-info">Code Example Title:</div>
+                                    <input class="form-control input-lg" data-bind="value: newExampleTitle" placeholder="Example Title" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="label-info">Code Example Description:</div>
+                                    <textarea class="form-control input-lg " data-bind="value: newExampleDescription" placeholder="Example Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div class="label-info">Code Example URL:</div>
+                                    <input class="form-control input-lg " data-bind="value: newExampleUrl" placeholder="Example URL" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="label-info">Code Example Image URL:</div>
+                                    <input class="form-control input-lg " data-bind="value: newExampleImageUrl" placeholder="Example Image URL" />
+                                </div>
+                                <button class="btn btn-block btn-primary" type="submit">Add New Code Example</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form method="post" enctype="multipart/form-data">
+                        <img class="img img-thumbnail" data-bind="attr: {src: $root.photoUrl() || 'images/tempImage.png'}" />
+                        <input type="file" name="files" id="files" class="fileChooser" multiple/>
+                        <input type="submit" class="btn btn-primary inline" value="Save Image" />
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>List of available images:</h4>
+                    <div data-bind="foreach: filenameList()">
+                        <span data-bind="text: $data"></span><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

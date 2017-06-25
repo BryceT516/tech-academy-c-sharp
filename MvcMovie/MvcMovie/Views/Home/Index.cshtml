@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1 data-bind="text: pageTitle"></h1>
+        <span class="lead">Coding examples portfolio</span>
+    </div>
+    <div class="row">
+        <div data-bind="foreach: codeExamples">
+            <div class="col-sm-6">
+                <div class="panel">
+                    <div class="panel-heading panel-primary"><h3 data-bind="text: exampleTitle"></h3></div>
+                    <div class="panel-body">
+
+                        <div data-bind="text: exampleDescription"></div>
+
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+</div>
+
+<script>
+    
+    function CodeExample(exampleTitle, exampleDescription, exampleUrl, exampleImageUrl) {
+        var self = this;
+        self.exampleTitle = exampleTitle;
+        self.exampleDescription = exampleDescription;
+        self.exampleUrl = exampleUrl;
+        self.exampleImageUrl = exampleImageUrl;
+    }
+
+    
+
+    // Overall viewmodel
+    function CodeExamplesViewModel() {
+
+        var self = this;
+
+        self.pageTitle = "@ViewData["Title"]";
+
+        self.newExampleTitle = ko.observable();
+        self.newExampleDescription = ko.observable();
+        self.newExampleUrl = ko.observable();
+        self.newExampleImageUrl = ko.observable();
+        
+        self.codeExamples = [
+            new CodeExample("title 1", "Description 1", "url 1", "image url 1"),
+            new CodeExample("title 1", "Description 1", "url 1", "image url 1"),
+            new CodeExample("title 1", "Description 1", "url 1", "image url 1"),
+            new CodeExample("title 1", "Description 1", "url 1", "image url 1"),
+            new CodeExample("title 2", "Description 2", "url 2", "image url 2")
+        ];
+        
+        //Operations
+
+
+    }
+
+    ko.applyBindings(new CodeExamplesViewModel());
+
+</script>

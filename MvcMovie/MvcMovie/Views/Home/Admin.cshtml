@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1 data-bind="text: pageTitle"></h1>
+        <span class="lead">Coding examples portfolio</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Coding Examples:</h3><br />
+            <div data-bind="foreach: codeExamples">
+                <div class="panel">
+                    <div class="panel-heading panel-primary"><h3 data-bind="text: exampleTitle"></h3></div>
+                    <div class="panel-body">
+
+                        <div data-bind="text: exampleDescription"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel">
+                <div class="panel-heading">Add Code Example</div>
+                <div class="panel-body">
+                    <form data-bind="submit: saveExample">
+                        <div class="form-group">
+                            <div class="label-info">Code Example Title:</div>
+                            <input class="form-control input-lg " data-bind="value: newExampleTitle" placeholder="Example Title" />
+                        </div>
+                        <div class="form-group">
+                            <div class="label-info">Code Example Description:</div>
+                            <textarea class="form-control input-lg " data-bind="value: newExampleDescription" placeholder="Example Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="label-info">Code Example URL:</div>
+                            <input class="form-control input-lg " data-bind="value: newExampleUrl" placeholder="Example URL" />
+                        </div>
+                        <div class="form-group">
+                            <div class="label-info">Code Example Image URL:</div>
+                            <input class="form-control input-lg " data-bind="value: newExampleImageUrl" placeholder="Example Image URL" />
+                        </div>
+                        <button class="btn btn-block btn-primary" type="submit">Add New Code Example</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    function CodeExample(exampleTitle, exampleDescription, exampleUrl, exampleImageUrl) {
+        var self = this;
+        self.exampleTitle = exampleTitle;
+        self.exampleDescription = exampleDescription;
+        self.exampleUrl = exampleUrl;
+        self.exampleImageUrl = exampleImageUrl;
+    }
+
+
+
+    // Overall viewmodel
+    function CodeExamplesViewModel() {
+
+        var self = this;
+
+        self.pageTitle = "@ViewData["Title"]";
+
+        self.newExampleTitle = ko.observable();
+        self.newExampleDescription = ko.observable();
+        self.newExampleUrl = ko.observable();
+        self.newExampleImageUrl = ko.observable();
+
+        self.codeExamples = [
+            new CodeExample("title 1", "Description 1", "url 1", "image url 1"),
+            new CodeExample("title 2", "Description 2", "url 2", "image url 2")
+        ];
+
+        //Operations
+
+
+    }
+
+    ko.applyBindings(new CodeExamplesViewModel());
+
+</script>

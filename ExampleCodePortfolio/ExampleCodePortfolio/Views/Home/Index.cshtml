@@ -1,0 +1,27 @@
+@{    
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1>@ViewData["Title"]</h1>
+        <span class="lead">Coding examples portfolio</span>
+    </div>
+    <div class="row">
+        <div data-bind="foreach: codeExamples">
+            <div class="col-sm-4">                
+                <div class="panel">
+                    <div class="panel-heading panel-primary"><a data-bind="attr: {href: Url}"><h3 data-bind="text: Title"></h3></a></div>
+                    <div class="panel-body">
+                        <img class="img-thumbnail" data-bind="attr:{src: ImageUrl}" />
+                        <div data-bind="text: Description"></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

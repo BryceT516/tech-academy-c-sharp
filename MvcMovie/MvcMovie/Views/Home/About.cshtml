@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+<h2 data-bind="text: pageTitle"></h2>
+<h3 data-bind="text: pageMessage"></h3>
+
+<p>Use this area to provide additional information.</p>
+
+<script>
+    // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+    function AppViewModel() {
+        this.pageTitle = "@ViewData["Title"]";
+        this.pageMessage = "@ViewData["Message"]";
+    }
+
+    // Activates knockout.js
+    ko.applyBindings(new AppViewModel());
+</script>
